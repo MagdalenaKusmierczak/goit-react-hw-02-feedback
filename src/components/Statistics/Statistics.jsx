@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
@@ -11,7 +10,7 @@ const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
         <li>Bad: {bad}</li>
         <li>Total: {total}</li>
         <li>
-          Positive feedback:{' '}
+          Positive feedback:
           {isNaN(positivePercentage) ? '0' : positivePercentage}%
         </li>
       </ul>
