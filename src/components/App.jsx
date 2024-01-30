@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Statistics from './Statistics/Statistics.jsx';
 
 export class App extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export class App extends Component {
     };
   }
 
-  handleClickGood = onCLick => {
+  handleClickGood = () => {
     this.setState({ good: this.state.good + 1 });
   };
   handleClickBad = () => {
@@ -19,28 +20,40 @@ export class App extends Component {
   handleClickNeutral = () => {
     this.setState({ neutral: this.state.neutral + 1 });
   };
+  countTotalFeedback = () => {
+    return this.state.good + this.state.bad + this.state.neutral;
+  };
+  countPositiveFeedbackPercentage = () => {
+    return Math.round(
+      (100 * this.state.good) /
+        (this.state.good + this.state.bad + this.state.neutral)
+    );
+  };
 
   render() {
+    const totalFeedback = this.countTotalFeedback;
+    const positivePercentage = this.countPositiveFeedbackPercentage;
     return (
       <div>
         <h2>Please leave feedback</h2>
-        <ul>
-          <button type="button" onClick={this.handleClickGood()}>
+        <div>
+          <button type="button" onClick={this.handleClickGood}>
             Good
           </button>
-          <button type="button" onClick={this.handleClickNeutral()}>
+          <button type="button" onClick={this.handleClickNeutral}>
             Neutral
           </button>
-          <button type="button" onClick={this.handleClickBad()}>
+          <button type="button" onClick={this.handleClickBad}>
             Bad
           </button>
-        </ul>
-        <h2>Statistics</h2>
-        <ul>
-          <li>Good: {this.state.good}</li>
-          <li>Neutral: {this.state.neutral}</li>
-          <li>Bad: {this.state.bad}</li>
-        </ul>
+        </div>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={totalFeedback()}
+          positivePercentage={positivePercentage()}
+        ></Statistics>
       </div>
     );
   }
