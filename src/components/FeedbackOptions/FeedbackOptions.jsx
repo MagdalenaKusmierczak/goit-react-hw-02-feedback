@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
+import { OptionsWrapper, Button } from './FeedbackOptions.styled.jsx';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div>
+    <OptionsWrapper>
       {options.map(option => (
-        <button
+        <Button
           key={option}
           type="button"
           onClick={() => onLeaveFeedback(option)}
         >
           {option}
-        </button>
+        </Button>
       ))}
-    </div>
+    </OptionsWrapper>
   );
 };
 
@@ -21,4 +22,4 @@ FeedbackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 
-export default FeedbackOptions
+export default FeedbackOptions;

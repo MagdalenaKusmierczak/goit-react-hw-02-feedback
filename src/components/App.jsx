@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Statistics from './Statistics/Statistics.jsx';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions.jsx';
 import Section from './Section/Section.jsx';
+import Notification from './Notification/Notification.jsx';
 
 export class App extends Component {
   constructor(props) {
@@ -37,13 +38,17 @@ export class App extends Component {
           options={feedbackOptions}
           onLeaveFeedback={this.onLeaveFeedback}
         ></FeedbackOptions>
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={totalFeedback()}
-          positivePercentage={positivePercentage()}
-        ></Statistics>
+        {totalFeedback === 0 ? (
+          <Notification message="No feedback given" />
+        ) : (
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={totalFeedback()}
+            positivePercentage={positivePercentage()}
+          ></Statistics>
+        )}
       </Section>
     );
   }

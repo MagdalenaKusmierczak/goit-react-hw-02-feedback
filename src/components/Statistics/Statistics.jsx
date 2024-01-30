@@ -1,20 +1,21 @@
 import PropTypes from 'prop-types';
+import { Wrapper, StatisticsTitle, List } from './Statistics.styled.jsx';
 
 const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
   return (
-    <div>
-      <h2>Statistics</h2>
-      <ul>
+    <Wrapper>
+      <StatisticsTitle>Statistics</StatisticsTitle>
+      <List>
         <li>Good: {good}</li>
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
         <li>Total: {total}</li>
         <li>
-          Positive feedback:
+          Positive feedback: {}
           {isNaN(positivePercentage) ? '0' : positivePercentage}%
         </li>
-      </ul>
-    </div>
+      </List>
+    </Wrapper>
   );
 };
 
